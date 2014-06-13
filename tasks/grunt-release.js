@@ -23,7 +23,8 @@ module.exports = function(grunt){
       tag: true,
       push: true,
       pushTags: true,
-      npm : true
+      npm : true,
+      branch: 'master'
     });
 
     var config = setup(options.file, type);
@@ -153,7 +154,7 @@ module.exports = function(grunt){
         .auth(process.env[options.github.usernameVar], process.env[options.github.passwordVar])
         .set('Accept', 'application/vnd.github.manifold-preview')
         .set('User-Agent', 'grunt-release')
-        .send({"tag_name": tagName, "name": tagMessage})
+        .send({"tag_name": tagName, "name": tagMessage, "target_commitish": options.branch})
         .end(function(res){
           if (res.statusCode === 201){
             success();
