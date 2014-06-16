@@ -152,7 +152,7 @@ module.exports = function(grunt){
       request
         .post('https://api.github.com/repos/' + options.github.repo + '/releases')
         .auth(process.env[options.github.usernameVar], process.env[options.github.passwordVar])
-        .set('Accept', 'application/vnd.github.manifold-preview')
+        .set('Accept', 'application/vnd.github.v3+json')
         .set('User-Agent', 'grunt-release')
         .send({"tag_name": tagName, "name": tagMessage, "target_commitish": options.branch})
         .end(function(res){
